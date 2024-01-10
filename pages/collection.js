@@ -28,7 +28,7 @@ export default function Collection() {
 
     // Clean up function to hide the search bar when the component is unmounted.
     return () => setNavbarData(prevData => ({ ...prevData, showSearchBar: false }));
-  }, [navbarData.searchTerm]); // Depend on navbarData.searchTerm to re-fetch when it updates
+  }, [navbarData.searchTerm, setNavbarData]); // Depend on navbarData.searchTerm to re-fetch when it updates
 
   return (
     <>

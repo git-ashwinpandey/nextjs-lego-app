@@ -10,7 +10,7 @@ export default function Register() {
         password: '',
         confirmPassword: ''
     });
-
+    const router = useRouter();
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -62,7 +62,7 @@ export default function Register() {
     };
 
     if (regResponse) {
-        const router = useRouter();
+        
         console.log("redirecting to /");
         router.push('/'); // Use the router to navigate
     }
@@ -85,7 +85,7 @@ export default function Register() {
                         required
                     />
                     <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
+                        We&apos;ll never share your email with anyone else.
                     </Form.Text>
                 </Form.Group>
 

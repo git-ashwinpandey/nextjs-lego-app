@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <>
-      <Container>
+      <Container className='position-relative'>
         <Row>
           <Col><HomeCard src="/images/legoLogo.png"/></Col>
           <Col><HomeCard src="/images/legoLogo.png"/></Col>

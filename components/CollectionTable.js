@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 function CollectionTable(props) {
   return (
+    <div className='container position-relative'>
     <Table striped hover>
       <thead>
         <tr>
@@ -37,6 +38,7 @@ function CollectionTable(props) {
         )) }
       </tbody>
     </Table>
+    </div>
   );
 }
 

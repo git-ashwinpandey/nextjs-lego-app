@@ -13,10 +13,8 @@ export default function Collection() {
       try {
         // Build the queryParam based on whether the searchTerm is present or not.
         const queryParam = navbarData.searchTerm ? `?searchTerm=${navbarData.searchTerm}` : '';
-        console.log(`Making API call with query: ${queryParam}`);
         const response = await fetch(`/api/collection${queryParam}`);
         const fetchedData = await response.json();
-        console.log('Fetched data:', fetchedData);
         setData(fetchedData.data);
       } catch (error) {
         console.error('Error fetching data:', error);

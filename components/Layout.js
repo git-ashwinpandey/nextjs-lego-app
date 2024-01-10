@@ -7,7 +7,7 @@ import { useNavbar } from '@/contexts/NavbarContext';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button"
 
-function createNavbar() {
+function CreateNavbar() {
   const { navbarData, setNavbarData } = useNavbar();
 
   const handleSearch = (e) => {
@@ -24,7 +24,6 @@ function createNavbar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/collection">Collection</Nav.Link>
-            <Nav.Link href="/about">About</Nav.Link>
           </Nav>
           {navbarData.showSearchBar && (
             <Form className="d-flex ms-auto" onSubmit={handleSearch}>
@@ -44,5 +43,5 @@ function createNavbar() {
 }
 
 export default function LayoutRouter() {
-  return <>{createNavbar()}</>;
+  return <>{CreateNavbar()}</>;
 }

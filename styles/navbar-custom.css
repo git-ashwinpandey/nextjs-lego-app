@@ -1,0 +1,33 @@
+/*  /syles/navbar-custom.css  */
+
+.navbarCustom {
+  background-color: #004d99; /* Dark blue background */
+  color: white; /* White text */
+}
+
+.navbarBrand {
+  font-weight: bold;
+  font-size: 1.5rem; /* Larger brand font */
+}
+
+.navLink {
+  color: white;
+  margin-right: 10px; /* Space between nav items */
+}
+
+.navLink:hover {
+  color: #ffcc00; /* Yellow color on hover */
+}
+
+.dropdownMenu {
+  background-color: #003366; /* Slightly darker blue for dropdown */
+  border: none;
+}
+
+.dropdownItem {
+  color: white;
+}
+
+.dropdownItem:hover {
+  background-color: #ffcc00; /* Yellow background on hover */
+}

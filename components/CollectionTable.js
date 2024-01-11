@@ -2,7 +2,10 @@ import Table from 'react-bootstrap/Table';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
+import { useSession } from 'next-auth/react';
+
 function CollectionTable(props) {
+  const { data: session } = useSession();
   return (
     <div className='container position-relative'>
     <Table striped hover>
@@ -31,9 +34,16 @@ function CollectionTable(props) {
             <td className='align-middle'>{data.year}</td>
             <td className='align-middle'>{data.theme.name}</td>
             <td className='align-middle'>{data.num_parts}</td>
-            <td className='align-middle'>
+            {session? (
+              <td className='align-middle'>
               <Button variant="primary">More Info</Button> <Button variant="primary">Edit</Button> <Button variant="primary">Delete</Button>
             </td>
+            ): (
+              <td className='align-middle'>
+              <Button variant="primary">More Info</Button>
+            </td>
+            )}
+            
           </tr>
         )) }
       </tbody>

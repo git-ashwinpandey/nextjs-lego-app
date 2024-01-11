@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-
+import { signIn } from 'next-auth/react';
 
 export default function Login() {
 
@@ -19,7 +19,18 @@ export default function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        const result = await signIn('credentials', {
+            redirect: false,
+            email: formData.email,
+            password: formData.password
+          });
+        
+          if (result.error) {
+            console.error('Login failed:', result.error);
+          } else {
+            router.push('/'); // Redirect to homepage after successful login
+          }
+        /*
         try {
             const response = await fetch('/api/authenticateUser', {
                 method: 'POST',
@@ -38,7 +49,7 @@ export default function Login() {
             }
         } catch (error) {
             console.error('Error during login:', error);
-        }
+        }*/
     };
     return (
         <>

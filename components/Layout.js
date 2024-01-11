@@ -5,16 +5,18 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Image from "next/image";
 import { useNavbar } from '@/contexts/NavbarContext';
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button"
+import Button from "react-bootstrap/Button";
+import { useSession, signIn, signOut, getSession } from "next-auth/react";
+import { useRouter } from 'next/router';
 
 function CreateNavbar() {
   const { navbarData, setNavbarData } = useNavbar();
-
+  const { data: session } = useSession();
+  const router = useRouter();
   const handleSearch = (e) => {
     e.preventDefault();
     setNavbarData(prevData => ({ ...prevData, searchTerm: e.target.search.value }));
   };
-  
 
   return (
     <Navbar expand="lg" className="navbar bg-primary-subtle border border-primary-subtle w-75 position-absolute top-0 start-50 translate-middle-x" fixed="top">
@@ -27,15 +29,22 @@ function CreateNavbar() {
           </Nav>
           {navbarData.showSearchBar && (
             <Form className="d-flex ms-auto" onSubmit={handleSearch}>
-            <Form.Control name="search" type="search" placeholder="Search" className="me-2" aria-label="Search"/>
-            <Button type="submit" variant="outline-success">Search</Button>
-          </Form>
+              <Form.Control name="search" type="search" placeholder="Search" className="me-2" aria-label="Search" />
+              <Button type="submit" variant="outline-success">Search</Button>
+            </Form>
           )}
-          <NavDropdown className="ms-auto" title="Account" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="/register">Register</NavDropdown.Item>
-          </NavDropdown>
+          {!session ? (
+            <NavDropdown className="ms-auto" title="Account" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="/register">Register</NavDropdown.Item>
+            </NavDropdown>
+          ) : (
+            <NavDropdown className="ms-auto" title={session.user.email} id="basic-nav-dropdown">
+              <NavDropdown.Item onClick={() => signOut()}>Logout</NavDropdown.Item>
+            </NavDropdown>
+          )}
+
         </Navbar.Collapse>
       </Container>
     </Navbar>

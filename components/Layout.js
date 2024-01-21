@@ -40,9 +40,15 @@ function CreateNavbar() {
               <NavDropdown.Item href="/register">Register</NavDropdown.Item>
             </NavDropdown>
           ) : (
-            <NavDropdown className="ms-auto" title={session.user.email} id="basic-nav-dropdown">
-              <NavDropdown.Item onClick={() => signOut()}>Logout</NavDropdown.Item>
-            </NavDropdown>
+            <>
+              <Nav>
+                <Nav.Link className="" href="/addset">Add Set</Nav.Link>
+              </Nav>
+              <NavDropdown className="" title={session.user.email} id="basic-nav-dropdown">
+                <NavDropdown.Item onClick={() => signOut()}>Logout</NavDropdown.Item>
+              </NavDropdown>
+            </>
+
           )}
 
         </Navbar.Collapse>
